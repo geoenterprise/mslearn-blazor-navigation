@@ -1,4 +1,6 @@
-﻿namespace BlazingPizza;
+﻿using System.Globalization;
+
+namespace BlazingPizza;
 
 /// <summary>
 /// Represents a customized pizza as part of an order
@@ -21,11 +23,13 @@ public class Pizza
 
     public List<PizzaTopping> Toppings { get; set; }
 
+    // lambda version: public decimal GetBasePrice() => ((decimal)Size / (decimal)DefaultSize) * Special.BasePrice;
     public decimal GetBasePrice()
     {
         return ((decimal)Size / (decimal)DefaultSize) * Special.BasePrice;
     }
 
+    // lambda version: public decimal GetTotalPrice() => GetBasePrice();
     public decimal GetTotalPrice()
     {
         return GetBasePrice();
@@ -33,6 +37,7 @@ public class Pizza
 
     public string GetFormattedTotalPrice()
     {
-        return GetTotalPrice().ToString("0.00");
+        //making it culture aware
+        return GetTotalPrice().ToString("C");
     }
 }

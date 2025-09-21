@@ -7,6 +7,10 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddHttpClient();
 builder.Services.AddSqlite<PizzaStoreContext>("Data Source=pizza.db");
 builder.Services.AddScoped<OrderState>();
+builder.Services.AddHttpClient();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<CurrencyState>(); // for managing currency state
+
 
 var app = builder.Build();
 
@@ -36,4 +40,3 @@ using (var scope = scopeFactory.CreateScope())
 
 
 app.Run();
-

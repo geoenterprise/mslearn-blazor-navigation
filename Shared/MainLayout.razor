@@ -1,4 +1,6 @@
 @inherits LayoutComponentBase
+@using System.Globalization
+@inject NavigationManager Nav
 
 <div id="app">
 
@@ -16,6 +18,7 @@
       <img src="img/bike.svg" />
       <div>My Orders</div>
     </NavLink>
+    
   </header>
 
   <div class="content">
@@ -23,7 +26,7 @@
   </div>
 
   <footer>
-    &copy; Blazing Pizza @DateTime.UtcNow.Year
+    &copy;  @DateTime.Now.Year • <strong>Jovanny Andres Rey — Colombia</strong>
   </footer>
 
 </div>

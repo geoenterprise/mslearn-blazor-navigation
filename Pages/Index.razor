@@ -31,7 +31,7 @@
           <div class="pizza-info">
           <span class="title">@special.Name</span>
           @special.Description
-          <span class="price">@special.GetFormattedBasePrice()</span>
+          <span class="price"><Money Usd="@special.BasePrice" /></span>
           </div>
         </li>
       }
@@ -59,7 +59,7 @@
                   <a @onclick="@(() => OrderState.RemoveConfiguredPizza(configuredPizza))" class="delete-item">x</a>
                   <div class="title">@(configuredPizza.Size)" @configuredPizza.Special.Name</div>
                   <div class="item-price">
-                      @configuredPizza.GetFormattedTotalPrice()
+                      <Money Usd="@configuredPizza.GetTotalPrice()" />
                   </div>
               </div>
             }
@@ -72,7 +72,7 @@
 
     <div class="order-total @(order.Pizzas.Any() ? "" : "hidden")">
         Total:
-        <span class="total-price">@order.GetFormattedTotalPrice()</span>
+        <span class="total-price"><Money Usd="@order.GetTotalPrice()" /></span>
         <a href="checkout" class="@(OrderState.Order.Pizzas.Count == 0 ? "btn btn-warning disabled" : "btn btn-warning")">
             Order >
         </a>

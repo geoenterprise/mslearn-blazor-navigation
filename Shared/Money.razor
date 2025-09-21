@@ -1,0 +1,22 @@
+@inject CurrencyState Currency
+<span>@_text</span>
+
+@code {
+    [Parameter] public decimal Usd { get; set; }
+    private string _text = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Currency.EnsureLoadedAsync();
+        _text = Currency.FormatFromUsd(Usd);
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (!Currency.IsReady)
+            await Currency.EnsureLoadedAsync();
+
+        // Recompute whenever Usd changes
+        _text = Currency.FormatFromUsd(Usd);
+    }
+}
